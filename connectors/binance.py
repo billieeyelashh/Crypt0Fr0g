@@ -63,7 +63,7 @@ class BinanceClient:
         t = threading.Thread(target=self._start_ws)
         t.start()
 
-        logger.info("[*] Binance Futures Client successfully initialized Fr0g Likes that")
+        logger.info("[*] Binance Futures Client successfully initialized Crypt0Fr0g Likes that")
 
     def _add_log(self, msg: str):
 
@@ -72,11 +72,7 @@ class BinanceClient:
 
     def _generate_signature(self, data: typing.Dict) -> str:
 
-        """
-        Generate a signature with the HMAC-256 algorithm.
-        :param data: Dictionary of parameters to be converted to a query string
-        :return:
-        """
+       
 
         return hmac.new(self._secret_key.encode(), urlencode(data).encode(), hashlib.sha256).hexdigest()
 

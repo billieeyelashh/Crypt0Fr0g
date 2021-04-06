@@ -158,3 +158,21 @@
 2021-04-06 13:55:03,860 ERROR :: error from callback <bound method BinanceClient._on_open of <connectors.binance.BinanceClient object at 0x7f8257014f40>>: _on_open() missing 1 required positional argument: 'ws'
 2021-04-06 13:55:21,119 ERROR :: error from callback <bound method BinanceClient._on_close of <connectors.binance.BinanceClient object at 0x7f8257014f40>>: _on_close() missing 1 required positional argument: 'ws'
 2021-04-06 13:55:21,158 ERROR :: error from callback <bound method BitmexClient._on_close of <connectors.bitmex.BitmexClient object at 0x7f8257021400>>: _on_close() missing 1 required positional argument: 'ws'
+2021-04-06 14:01:21,518 DEBUG :: Starting new HTTPS connection (1): testnet.binancefuture.com:443
+2021-04-06 14:01:22,310 DEBUG :: https://testnet.binancefuture.com:443 "GET /fapi/v1/exchangeInfo HTTP/1.1" 200 None
+2021-04-06 14:01:22,316 DEBUG :: Starting new HTTPS connection (1): testnet.binancefuture.com:443
+2021-04-06 14:01:22,610 DEBUG :: https://testnet.binancefuture.com:443 "GET /fapi/v1/account?timestamp=1617710482314&signature=dd0c0948a6fc773e7181382bff29309e5a002c34497c4bf0c3ce9ca74fdf383e HTTP/1.1" 401 46
+2021-04-06 14:01:22,612 ERROR :: Error while making GET request to /fapi/v1/account: {'code': -2014, 'msg': 'API-key format invalid.'} (error code 401)
+2021-04-06 14:01:22,612 INFO :: [*] Binance Futures Client successfully initialized Fr0g Likes that
+2021-04-06 14:01:22,614 DEBUG :: Starting new HTTPS connection (1): testnet.bitmex.com:443
+2021-04-06 14:01:22,811 DEBUG :: https://testnet.bitmex.com:443 "GET /api/v1/instrument/active HTTP/1.1" 400 59
+2021-04-06 14:01:22,814 ERROR :: Error while making GET request to /api/v1/instrument/active: {'error': {'message': 'Missing API key.', 'name': 'HTTPError'}} (error code 400)
+2021-04-06 14:01:22,815 DEBUG :: Starting new HTTPS connection (1): testnet.bitmex.com:443
+2021-04-06 14:01:23,002 DEBUG :: https://testnet.bitmex.com:443 "GET /api/v1/user/margin?currency=all HTTP/1.1" 400 59
+2021-04-06 14:01:23,004 ERROR :: Error while making GET request to /api/v1/user/margin: {'error': {'message': 'Missing API key.', 'name': 'HTTPError'}} (error code 400)
+2021-04-06 14:01:23,005 INFO :: Bitmex Client successfully initialized
+2021-04-06 14:01:23,244 ERROR :: error from callback <bound method BitmexClient._on_open of <connectors.bitmex.BitmexClient object at 0x7f2d3c349df0>>: _on_open() missing 1 required positional argument: 'ws'
+2021-04-06 14:01:23,244 ERROR :: error from callback <bound method BitmexClient._on_message of <connectors.bitmex.BitmexClient object at 0x7f2d3c349df0>>: _on_message() missing 1 required positional argument: 'msg'
+2021-04-06 14:01:23,704 ERROR :: error from callback <bound method BinanceClient._on_open of <connectors.binance.BinanceClient object at 0x7f2d3c337dc0>>: _on_open() missing 1 required positional argument: 'ws'
+2021-04-06 14:01:27,090 ERROR :: error from callback <bound method BinanceClient._on_close of <connectors.binance.BinanceClient object at 0x7f2d3c337dc0>>: _on_close() missing 1 required positional argument: 'ws'
+2021-04-06 14:01:27,130 ERROR :: error from callback <bound method BitmexClient._on_close of <connectors.bitmex.BitmexClient object at 0x7f2d3c349df0>>: _on_close() missing 1 required positional argument: 'ws'
