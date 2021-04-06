@@ -3,9 +3,8 @@ import requests
 import time
 import typing
 import collections
-
 from urllib.parse import urlencode
-
+import secrets
 import hmac
 import hashlib
 
@@ -20,8 +19,9 @@ from strategies import TechnicalStrategy, BreakoutStrategy
 
 logger = logging.getLogger()
 
-
 class BinanceClient:
+    
+    
     def __init__(self, public_key: str, secret_key: str, testnet: bool, futures: bool):
 
         self.futures = futures
@@ -72,7 +72,7 @@ class BinanceClient:
 
     def _generate_signature(self, data: typing.Dict) -> str:
 
-       
+
 
         return hmac.new(self._secret_key.encode(), urlencode(data).encode(), hashlib.sha256).hexdigest()
 
