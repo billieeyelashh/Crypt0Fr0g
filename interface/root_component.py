@@ -28,8 +28,7 @@ class Root(tk.Tk):
 
         self.configure(bg=BG_COLOR)
 
-        # Create the menu, sub menu and menu commands
-        # You can use the menu when you don't want to overload the interface with too many buttons
+
 
         self.main_menu = tk.Menu(self)
         self.configure(menu=self.main_menu)
@@ -38,7 +37,6 @@ class Root(tk.Tk):
         self.main_menu.add_cascade(label="Workspace", menu=self.workspace_menu)
         self.workspace_menu.add_command(label="Save workspace", command=self._save_workspace)
 
-        # Separates the root component in two blocks
 
         self._left_frame = tk.Frame(self, bg=BG_COLOR)
         self._left_frame.pack(side=tk.LEFT)
@@ -46,7 +44,6 @@ class Root(tk.Tk):
         self._right_frame = tk.Frame(self, bg=BG_COLOR)
         self._right_frame.pack(side=tk.LEFT)
 
-        # Creates and places components at the top and bottom of the left and right frame
 
         self._watchlist_frame = Watchlist(self.binance.contracts, self.bitmex.contracts, self._left_frame, bg=BG_COLOR)
         self._watchlist_frame.pack(side=tk.TOP, padx=10)
@@ -64,11 +61,7 @@ class Root(tk.Tk):
 
     def _ask_before_close(self):
 
-        """
-        Triggered when the user click on the Close button of the interface.
-        This lets you have control over what's happening just before closing the interface.
-        :return:
-        """
+
 
         result = askquestion("Confirmation", "Do you really want to exit the application?")
         if result == "yes":
@@ -81,12 +74,7 @@ class Root(tk.Tk):
 
     def _update_ui(self):
 
-        """
-        Called by itself every 1500 seconds. It is similar to an infinite loop but runs within the same Thread
-        as .mainloop() thanks to the .after() method, thus it is "thread-safe" to update elements of the interface
-        in this method. Do not update Tkinter elements from another Thread like the websocket thread.
-        :return:
-        """
+
 
         # Logs
 
@@ -178,12 +166,7 @@ class Root(tk.Tk):
 
     def _save_workspace(self):
 
-        """
-        Collect the current data on the interface and saves it to the SQLite database to avoid setting up everything
-        again everytime you open the program.
-        Triggered from a Menu command.
-        :return:
-        """
+
 
         # Watchlist
 

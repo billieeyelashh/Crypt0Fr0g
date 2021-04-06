@@ -21,13 +21,7 @@ class Autocomplete(tk.Entry):
 
     def _changed(self, var_name: str, index: str, mode: str):
 
-        """
-        Open a Listbox when the tk.Entry content changes and get a list of symbols matching this content
-        :param var_name:
-        :param index:
-        :param mode:
-        :return:
-        """
+
 
         self._var.set(self._var.get().upper())  # Set the content of the tk.Entry widget to uppercase as you type
 
@@ -62,12 +56,7 @@ class Autocomplete(tk.Entry):
 
     def _select(self, event: tk.Event):
 
-        """
-        Triggered with when the keyboard Right arrow is pressed, set the current Listbox item as a value of the
-        tk.Entry widget.
-        :param event:
-        :return:
-        """
+
 
         if self._lb_open:
             self._var.set(self._lb.get(tk.ACTIVE))
@@ -77,11 +66,7 @@ class Autocomplete(tk.Entry):
 
     def _up_down(self, event: tk.Event):
 
-        """
-        Move the Listbox cursor up or down depending on the keyboard key that was pressed.
-        :param event:
-        :return:
-        """
+
 
         if self._lb_open:
             if self._lb.curselection() == ():  # No Listbox item selected yet

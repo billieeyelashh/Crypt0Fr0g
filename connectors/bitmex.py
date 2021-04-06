@@ -27,12 +27,7 @@ logger = logging.getLogger()
 class BitmexClient:
     def __init__(self, public_key: str, secret_key: str, testnet: bool):
 
-        """
-        See comments in the Binance connector.
-        :param public_key:
-        :param secret_key:
-        :param testnet:
-        """
+
 
         self.platform = "bitmex"  # Just to have more homogeneous connectors, even if self.platform is not used
 
@@ -299,14 +294,7 @@ class BitmexClient:
 
     def get_trade_size(self, contract: Contract, price: float, balance_pct: float):
 
-        """
-        Compute the trade size for the strategy module based on the percentage of the balance to use
-        that was defined in the strategy component and the type of contract.
-        :param contract:
-        :param price: Used to convert the amount to invest into an amount to buy/sell
-        :param balance_pct:
-        :return:
-        """
+
 
         balance = self.get_balances()
         if balance is not None:
@@ -319,8 +307,6 @@ class BitmexClient:
 
         xbt_size = balance * balance_pct / 100
 
-        # The trade size calculation depends on the type of contract
-        # https://www.bitmex.com/app/perpetualContractsGuide
 
         if contract.inverse:
             contracts_number = xbt_size / (contract.multiplier / price)

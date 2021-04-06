@@ -58,9 +58,7 @@ class StrategyEditor(tk.Frame):
         self.additional_parameters = dict()
         self._extra_input = dict()
 
-        # Defines the widgets displayed on each row and some characteristics of these widgets like their width
-        # This lets the program create the widgets dynamically and it takes less space in the code
-        # The width may need to be adjusted depending on your screen size and resolution
+
         self._base_params = [
             {"code_name": "strategy_type", "widget": tk.OptionMenu, "data_type": str,
              "values": ["Technical", "Breakout"], "width": 10, "header": "Strategy"},
@@ -117,14 +115,7 @@ class StrategyEditor(tk.Frame):
 
     def _add_strategy_row(self):
 
-        """
-        Add a new row with widgets defined in the self._base_params list.
-        Aligning these widgets with the headers (that are in another frame) can be tricky.
-        List of arguments having an influence on the widgets width: bd, indicatoron, width, font, highlightthickness
-        This is because the widgets are of different types (the headers are Labels and the body widgets can be Buttons...
-        Mac OSX/Windows also has an influence on the widget style and thus width.
-        :return:
-        """
+
 
         b_index = self._body_index
 
@@ -167,12 +158,7 @@ class StrategyEditor(tk.Frame):
 
     def _delete_row(self, b_index: int):
 
-        """
-        Triggered when the user clicks the X button.
-        The row below the one deleted will automatically adjust and take its place, independently of its b_index.
-        :param b_index:
-        :return:
-        """
+
 
         for element in self._base_params:
             self.body_widgets[element['code_name']][b_index].grid_forget()
@@ -181,12 +167,7 @@ class StrategyEditor(tk.Frame):
 
     def _show_popup(self, b_index: int):
 
-        """
-        Display a popup window with additional parameters that are specific to the strategy selected.
-        This avoids overloading the strategy component with too many tk.Entry boxes.
-        :param b_index:
-        :return:
-        """
+
 
         x = self.body_widgets["parameters"][b_index].winfo_rootx()
         y = self.body_widgets["parameters"][b_index].winfo_rooty()
@@ -237,11 +218,7 @@ class StrategyEditor(tk.Frame):
 
     def _validate_parameters(self, b_index: int):
 
-        """
-        Record the parameters set in the popup window and close it.
-        :param b_index:
-        :return:
-        """
+
 
         strat_selected = self.body_widgets['strategy_type_var'][b_index].get()
 
@@ -257,12 +234,7 @@ class StrategyEditor(tk.Frame):
 
     def _switch_strategy(self, b_index: int):
 
-        """
-        Triggered when the user presses the ON/OFF button.
-        Collects initial historical data (hence why there is a small delay on the interface after you click).
-        :param b_index:
-        :return:
-        """
+
 
         for param in ["balance_pct", "take_profit", "stop_loss"]:
             if self.body_widgets[param][b_index].get() == "":
@@ -297,9 +269,7 @@ class StrategyEditor(tk.Frame):
             else:
                 return
 
-            # Collects historical data. It is just one API call so that is ok, but be careful not to call methods
-            # that would lock the UI for too long.
-            # For example don't make a query to a database containing billions of rows, your interface would freeze.
+
             new_strategy.candles = self._exchanges[exchange].get_historical_candles(contract, timeframe)
 
             if len(new_strategy.candles) == 0:
@@ -334,10 +304,7 @@ class StrategyEditor(tk.Frame):
 
     def _load_workspace(self):
 
-        """
-        Add the rows and fill them with data saved in the database
-        :return:
-        """
+
 
         data = self.db.get("strategies")
 

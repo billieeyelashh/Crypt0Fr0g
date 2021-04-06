@@ -18,20 +18,11 @@ from models import *
 
 from strategies import TechnicalStrategy, BreakoutStrategy
 
-
 logger = logging.getLogger()
 
 
 class BinanceClient:
     def __init__(self, public_key: str, secret_key: str, testnet: bool, futures: bool):
-
-        """
-        https://binance-docs.github.io/apidocs/futures/en
-        :param public_key:
-        :param secret_key:
-        :param testnet:
-        :param futures: if False, the Client will be a Spot API Client
-        """
 
         self.futures = futures
 
@@ -72,15 +63,9 @@ class BinanceClient:
         t = threading.Thread(target=self._start_ws)
         t.start()
 
-        logger.info("Binance Futures Client successfully initialized")
+        logger.info("[*] Binance Futures Client successfully initialized Fr0g Likes that")
 
     def _add_log(self, msg: str):
-
-        """
-        Add a log to the list so that it can be picked by the update_ui() method of the root component.
-        :param msg:
-        :return:
-        """
 
         logger.info("%s", msg)
         self.logs.append({"log": msg, "displayed": False})
@@ -97,13 +82,7 @@ class BinanceClient:
 
     def _make_request(self, method: str, endpoint: str, data: typing.Dict):
 
-        """
-        Wrapper that normalizes the requests to the REST API and error handling.
-        :param method: GET, POST, DELETE
-        :param endpoint: Includes the /api/v1 part
-        :param data: Parameters of the request
-        :return:
-        """
+
 
         if method == "GET":
             try:
@@ -137,10 +116,7 @@ class BinanceClient:
 
     def get_contracts(self) -> typing.Dict[str, Contract]:
 
-        """
-        Get a list of symbols/contracts on the exchange to be displayed in the OptionMenus of the interface.
-        :return:
-        """
+
 
         if self.futures:
             exchange_info = self._make_request("GET", "/fapi/v1/exchangeInfo", dict())
@@ -157,12 +133,6 @@ class BinanceClient:
 
     def get_historical_candles(self, contract: Contract, interval: str) -> typing.List[Candle]:
 
-        """
-        Get a list of the most recent candlesticks for a given symbol/contract and interval.
-        :param contract:
-        :param interval: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-        :return:
-        """
 
         data = dict()
         data['symbol'] = contract.symbol
@@ -184,12 +154,7 @@ class BinanceClient:
 
     def get_bid_ask(self, contract: Contract) -> typing.Dict[str, float]:
 
-        """
-        Get a snapshot of the current bid and ask price for a symbol/contract, to be sure there is something
-        to display in the Watchlist.
-        :param contract:
-        :return:
-        """
+
 
         data = dict()
         data['symbol'] = contract.symbol
@@ -210,10 +175,7 @@ class BinanceClient:
 
     def get_balances(self) -> typing.Dict[str, Balance]:
 
-        """
-        Get the current balance of the account, the data is different between Spot and Futures
-        :return:
-        """
+
 
         data = dict()
         data['timestamp'] = int(time.time() * 1000)
@@ -238,16 +200,7 @@ class BinanceClient:
 
     def place_order(self, contract: Contract, order_type: str, quantity: float, side: str, price=None, tif=None) -> OrderStatus:
 
-        """
-        Place an order. Based on the order_type, the price and tif arguments are not required
-        :param contract:
-        :param order_type: LIMIT, MARKET, STOP, TAKE_PROFIT, LIQUIDATION
-        :param quantity:
-        :param side:
-        :param price:
-        :param tif:
-        :return:
-        """
+
 
         data = dict()
         data['symbol'] = contract.symbol
@@ -305,14 +258,6 @@ class BinanceClient:
 
     def _get_execution_price(self, contract: Contract, order_id: int) -> float:
 
-        """
-        For Binance Spot only, find the equivalent of the 'avgPrice' key on the futures side.
-        The average price is the weighted sum of each trade price related to the order_id
-        :param contract:
-        :param order_id:
-        :return:
-        """
-
         data = dict()
         data['timestamp'] = int(time.time() * 1000)
         data['symbol'] = contract.symbol
@@ -356,10 +301,7 @@ class BinanceClient:
 
     def _start_ws(self):
 
-        """
-        Infinite loop (thus has to run in a Thread) that reopens the websocket connection in case it drops
-        :return:
-        """
+
 
         self.ws = websocket.WebSocketApp(self._wss_url, on_open=self._on_open, on_close=self._on_close,
                                          on_error=self._on_error, on_message=self._on_message)
@@ -383,37 +325,23 @@ class BinanceClient:
 
     def _on_close(self, ws):
 
-        """
-        Callback method triggered when the connection drops
-        :return:
-        """
 
         logger.warning("Binance Websocket connection closed")
 
     def _on_error(self, ws, msg: str):
 
-        """
-        Callback method triggered in case of error
-        :param msg:
-        :return:
-        """
+
 
         logger.error("Binance connection error: %s", msg)
 
     def _on_message(self, ws, msg: str):
 
-        """
-        The websocket updates of the channels the program subscribed to will go through this callback method
-        :param msg:
-        :return:
-        """
+
 
         data = json.loads(msg)
 
         if "u" in data and "A" in data:
-            data['e'] = "bookTicker"  # For Binance Spot, to make the data structure uniform with Binance Futures
-            # See the data structure difference here: https://binance-docs.github.io/apidocs/spot/en/#individual-symbol-book-ticker-streams
-
+            data['e'] = "bookTicker"
         if "e" in data:
             if data['e'] == "bookTicker":
 
@@ -425,7 +353,7 @@ class BinanceClient:
                     self.prices[symbol]['bid'] = float(data['b'])
                     self.prices[symbol]['ask'] = float(data['a'])
 
-                # PNL Calculation
+
 
                 try:
                     for b_index, strat in self.strategies.items():
@@ -450,13 +378,7 @@ class BinanceClient:
 
     def subscribe_channel(self, contracts: typing.List[Contract], channel: str):
 
-        """
-        Subscribe to updates on a specific topic for all the symbols.
-        If your list is bigger than 300 symbols, the subscription will fail (observed on Binance Spot).
-        :param contracts:
-        :param channel: aggTrades, bookTicker...
-        :return:
-        """
+
 
         if len(contracts) > 200:
             logger.warning("Subscribing to more than 200 symbols will most likely fail. "
@@ -483,14 +405,7 @@ class BinanceClient:
 
     def get_trade_size(self, contract: Contract, price: float, balance_pct: float):
 
-        """
-        Compute the trade size for the strategy module based on the percentage of the balance to use
-        that was defined in the strategy component.
-        :param contract:
-        :param price: Used to convert the amount to invest into an amount to buy/sell
-        :param balance_pct:
-        :return:
-        """
+
 
         logger.info("Getting Binance trade size...")
 

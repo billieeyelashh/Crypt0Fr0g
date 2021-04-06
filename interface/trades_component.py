@@ -46,11 +46,7 @@ class TradesWatch(tk.Frame):
 
     def add_trade(self, trade: Trade):
 
-        """
-        Add a new trade row.
-        :param trade:
-        :return:
-        """
+
 
         b_index = self._body_index
 

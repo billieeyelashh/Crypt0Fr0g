@@ -1,10 +1,6 @@
 def check_integer_format(text: str) -> bool:
 
-    """
-    Check that the text is a positive integer
-    :param text: Text entered by the user in a tk.Entry widget
-    :return:
-    """
+
 
     if text == "":
         return True
@@ -22,11 +18,7 @@ def check_integer_format(text: str) -> bool:
 
 def check_float_format(text: str) -> bool:
 
-    """
-    Check that the text is a positive floating number
-    :param text: Text entered by the user in a tk.Entry widget
-    :return:
-    """
+
 
     if text == "":
         return True

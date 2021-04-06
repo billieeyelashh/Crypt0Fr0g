@@ -16,12 +16,7 @@ class WorkspaceData:
 
     def save(self, table: str, data: typing.List[typing.Tuple]):
 
-        """
-        Erase the previous table content and record new data to it.
-        :param table: The table name
-        :param data: A list of tuples, the tuples elements must be ordered like the table columns
-        :return:
-        """
+
 
         self.cursor.execute(f"DELETE FROM {table}")
 
@@ -37,11 +32,7 @@ class WorkspaceData:
 
     def get(self, table: str) -> typing.List[sqlite3.Row]:
 
-        """
-        Get all the rows recorded for the table.
-        :param table: The table name to get the rows from. e.g: strategies, watchlist
-        :return: A list of sqlite3.Rows accessible like Python dictionaries.
-        """
+
 
         self.cursor.execute(f"SELECT * FROM {table}")
         data = self.cursor.fetchall()

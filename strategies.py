@@ -46,13 +46,7 @@ class Strategy:
 
     def parse_trades(self, price: float, size: float, timestamp: int) -> str:
 
-        """
-        Parse new trades coming in from the websocket and update the Candle list based on the timestamp.
-        :param price: The trade price
-        :param size: The trade size
-        :param timestamp: Unix timestamp in milliseconds
-        :return:
-        """
+
 
         timestamp_diff = int(time.time() * 1000) - timestamp
         if timestamp_diff >= 2000:
@@ -123,11 +117,7 @@ class Strategy:
 
     def _check_order_status(self, order_id):
 
-        """
-        Called regularly after an order has been placed, until it is filled.
-        :param order_id: The order id to check.
-        :return:
-        """
+
 
         order_status = self.client.get_order_status(self.contract, order_id)
 
@@ -147,11 +137,7 @@ class Strategy:
 
     def _open_position(self, signal_result: int):
 
-        """
-        Open Long or Short position based on the signal result.
-        :param signal_result: 1 (Long) or -1 (Short)
-        :return:
-        """
+
 
         # Short is not allowed on Spot platforms
         if self.client.platform == "binance_spot" and signal_result == -1:
@@ -188,11 +174,7 @@ class Strategy:
 
     def _check_tp_sl(self, trade: Trade):
 
-        """
-        Based on the average entry price, calculates whether the defined stop loss or take profit has been reached.
-        :param trade:
-        :return:
-        """
+
 
         tp_triggered = False
         sl_triggered = False
@@ -241,10 +223,7 @@ class TechnicalStrategy(Strategy):
 
     def _rsi(self) -> float:
 
-        """
-        Compute the Relative Strength Index.
-        :return: The RSI value of the previous candlestick
-        """
+
 
         close_list = []
         for candle in self.candles:
@@ -252,7 +231,6 @@ class TechnicalStrategy(Strategy):
 
         closes = pd.Series(close_list)
 
-        # Calculate the different between the value of one row and the value of the row before
         delta = closes.diff().dropna()
 
         up, down = delta.copy(), delta.copy()
@@ -271,10 +249,7 @@ class TechnicalStrategy(Strategy):
 
     def _macd(self) -> Tuple[float, float]:
 
-        """
-        Compute the MACD and its Signal line.
-        :return: The MACD and the MACD Signal value of the previous candlestick
-        """
+
 
         close_list = []
         for candle in self.candles:
@@ -292,11 +267,7 @@ class TechnicalStrategy(Strategy):
 
     def _check_signal(self):
 
-        """
-        Compute technical indicators and compare their value to some predefined levels to know whether to go Long,
-        Short, or do nothing.
-        :return: 1 for a Long signal, -1 for a Short signal, 0 for no signal
-        """
+
 
         macd_line, macd_signal = self._macd()
         rsi = self._rsi()
@@ -310,12 +281,7 @@ class TechnicalStrategy(Strategy):
 
     def check_trade(self, tick_type: str):
 
-        """
-        To be triggered from the websocket _on_message() methods. Triggered only once per candlestick to avoid
-        constantly calculating the indicators. A trade can occur only if the is no open position at the moment.
-        :param tick_type: same_candle or new_candle
-        :return:
-        """
+
 
         if tick_type == "new_candle" and not self.ongoing_position:
             signal_result = self._check_signal()
@@ -333,10 +299,7 @@ class BreakoutStrategy(Strategy):
 
     def _check_signal(self) -> int:
 
-        """
-        Use candlesticks OHLC data to define Long or Short patterns.
-        :return: 1 for a Long signal, -1 for a Short signal, 0 for no signal
-        """
+
 
         if self.candles[-1].close > self.candles[-2].high and self.candles[-1].volume > self._min_volume:
             return 1
@@ -347,11 +310,7 @@ class BreakoutStrategy(Strategy):
 
     def check_trade(self, tick_type: str):
 
-        """
-        To be triggered from the websocket _on_message() methods
-        :param tick_type: same_candle or new_candle
-        :return:
-        """
+
 
         if not self.ongoing_position:
             signal_result = self._check_signal()

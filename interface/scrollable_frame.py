@@ -28,41 +28,25 @@ class ScrollableFrame(tk.Frame):
 
     def _on_frame_configure(self, event: tk.Event):
 
-        """
-        Makes the whole canvas content (defined by the .bbox("all") coordinates) scrollable.
-        :param event:
-        :return:
-        """
 
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
     def _activate_mousewheel(self, event: tk.Event):
 
-        """
-        Activate the _on_mousewheel() callback when the mouse enters the canvas sub_frame
-        :param event:
-        :return:
-        """
+
 
         self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
 
     def _deactivate_mousewheel(self, event: tk.Event):
 
-        """
-        Deactivate the _on_mousewheel() callback when the mouse leaves the canvas sub_frame
-        :param event:
-        :return:
-        """
+
 
         self.canvas.unbind_all("<MouseWheel>")
 
     def _on_mousewheel(self, event: tk.Event):
 
-        """
-        Scroll the canvas content when the MouseWheel is triggered.
-        :param event:
-        :return:
-        """
+
+
 
         self.canvas.yview_scroll(int(-1 * (event.delta / 60)), "units")  # Decrease 60 to increase the sensitivity
 
