@@ -3,6 +3,7 @@
 
 ## General Info:
 - Hi I'm Crypto Frog :). I'm trading various coins. I try to make you rich just be doing nothing. Use me at your own risk. QUACK!
+- I'm still under active development so pull requests are welcomed 
 ## How to install 
 
 ### Step1: Connect Bot to Binance
