@@ -6,11 +6,11 @@
   
 ## How to install 
 
-Step1: Get your private Api Keys from Binance and write them to database.py
+### Step1: Get your private Api Keys from Binance and write them to database.py
 
-Step2: Installing requirements
+### Step2: Installing requirements
       pip intall -r requirements.txt
 
-Step3: Run main.py
+### Step3: Run main.py
       python3 main.py
   
