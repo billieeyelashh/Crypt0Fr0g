@@ -1,9 +1,8 @@
-# Crypt0Fr0g
 [![CircleCI](https://circleci.com/gh/lona9a/Crypt0Fr0g.svg?style=shield)](https://circleci.com/gh/lona9a/Crypt0Fr0g)
-
-## General Info:
+# Crypt0Fr0g
 - Hi I'm Crypto Frog :). I'm trading various coins. I try to make you rich just be doing nothing. Use me at your own risk. QUACK!
 - I'm still under active development so pull requests are welcomed 
+
 ## How to install 
 
 ### Step1: Connect Bot to Binance
