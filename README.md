@@ -8,7 +8,7 @@
 
 ### Step1: Get your private API Keys from Binance and write them to database.py
 
-### Step2 How to get the API key:
+### Step2: How to get the API key:
  <img src="https://public.bnbstatic.com/image/cms/article/body/202103/d40241dca7c551e2944fd039177b50d0.png" width="300"> |
  <img src="https://public.bnbstatic.com/image/cms/article/body/202103/38fbe5e95c6fde496c8b3f1d7f4843f6.png" width="300"> |
 
@@ -23,7 +23,7 @@
 ---
 ## TO-DO
 - Add stochastical Analysis
-- Add support for other Brokers
+- Add support for other Brokers(e.g Bitmex Coinbase etc.)
 - Add support for Elon Musk Tweets lol
 - Make a better README.md
 
