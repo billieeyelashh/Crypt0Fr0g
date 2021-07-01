@@ -75,7 +75,7 @@ if __name__ == '__main__':  # Execute the following code only when executing mai
             |___/    |_|                           |___/ 
 
 I'm a frog QUACK! I make you rich by trading cryptos
-v.0.01 written by @ak3rmit aka r0p @github
+v.0.01 written by @lonaya
 
     """)
     binance = BinanceClient("",
