@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/lona9a/Crypt0Fr0g.svg?style=shield)](https://circleci.com/gh/lona9a/Crypt0Fr0g)
 
 ## General Info:
-  This bot is designed to trade Crypto on the Binance platform. Use this bot at your own Risk.
+- This bot is designed to trade Crypto on the Binance platform. Use this bot at your own Risk.
 ---  
 ## How to install 
 
@@ -19,7 +19,7 @@
       python3 main.py
 ---  
 ## Configuration
-You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
+- You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
 ---
 ## TO-DO
 - Add stochastical Analysis
