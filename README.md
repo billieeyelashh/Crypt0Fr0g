@@ -14,3 +14,7 @@
 ### Step3: Run main.py
       python3 main.py
   
+## Configuration
+You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
+
+## Credits
