@@ -6,16 +6,16 @@
 
 ## How to install 
 
-### Step1: Get your private API Keys from Binance and write them to database.py
-
-### Step2: How to get the API key:
+### Step1: Connect Bot to Binance
+- Get the API key from Binance
  <img src="https://public.bnbstatic.com/image/cms/article/body/202103/d40241dca7c551e2944fd039177b50d0.png" width="300"> |
  <img src="https://public.bnbstatic.com/image/cms/article/body/202103/38fbe5e95c6fde496c8b3f1d7f4843f6.png" width="300"> |
+- Write them into the secrets.py file
 
-### Step3: Installing requirements
+### Step2: Installing requirements
       pip intall -r requirements.txt
 
-### Step4: Run main.py
+### Step3: Run the Crypt0Fr0g
       python3 main.py
   
 ## Configuration
