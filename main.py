@@ -80,8 +80,11 @@ v.0.01 written by @ak3rmit aka r0p @github
     """)
     binance = BinanceClient("",
                             "",
-                            testnet=True, futures=True)
-    bitmex = BitmexClient("", "", testnet=True)
+                            testnet=True, # change this to let the  bot trade with real Money
+                            futures=True)
+    bitmex = BitmexClient("",
+                           "",
+                          testnet=True) # currently doesn't work
 
     root = Root(binance, bitmex)
     root.mainloop()

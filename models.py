@@ -2,7 +2,7 @@ import dateutil.parser
 import datetime
 
 
-BITMEX_MULTIPLIER = 0.00000001  # Converts satoshi numbers to Bitcoin on Bitmex
+BITMEX_MULTIPLIER = 0.00000001 
 BITMEX_TF_MINUTES = {"1m": 1, "5m": 5, "1h": 60, "1d": 1440}
 
 
@@ -85,8 +85,6 @@ class Contract:
             self.base_asset = contract_info['baseAsset']
             self.quote_asset = contract_info['quoteAsset']
 
-            # The actual lot size and tick size on Binance spot can be found in the 'filters' fields
-            # contract_info['filters'] is a list
             for b_filter in contract_info['filters']:
                 if b_filter['filterType'] == 'PRICE_FILTER':
                     self.tick_size = float(b_filter['tickSize'])

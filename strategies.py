@@ -8,13 +8,12 @@ import pandas as pd
 
 from models import *
 
-if TYPE_CHECKING:  # Import the connector class names only for typing purpose (the classes aren't actually imported)
+if TYPE_CHECKING:  
     from connectors.bitmex import BitmexClient
     from connectors.binance import BinanceClient
 
 logger = logging.getLogger()
 
-# TF_EQUIV is used in parse_trades() to compare the last candle timestamp to the new trade timestamp
 TF_EQUIV = {"1m": 60, "5m": 300, "15m": 900, "30m": 900, "1h": 3600, "4h": 14400}
 
 
@@ -50,12 +49,11 @@ class Strategy:
 
         timestamp_diff = int(time.time() * 1000) - timestamp
         if timestamp_diff >= 2000:
-            logger.warning("%s %s: %s milliseconds of difference between the current time and the trade time",
+            logger.warning("%s %s: %s milliseconds difference current time to trade time",
                            self.exchange, self.contract.symbol, timestamp_diff)
 
         last_candle = self.candles[-1]
 
-        # Same Candle
 
         if timestamp < last_candle.timestamp + self.tf_equiv:
 
@@ -67,7 +65,7 @@ class Strategy:
             elif price < last_candle.low:
                 last_candle.low = price
 
-            # Check Take profit / Stop loss
+            # Checks for stop loss func
 
             for trade in self.trades:
                 if trade.status == "open" and trade.entry_price is not None:
@@ -75,7 +73,6 @@ class Strategy:
 
             return "same_candle"
 
-        # Missing Candle(s)
 
         elif timestamp >= last_candle.timestamp + 2 * self.tf_equiv:
 
@@ -102,7 +99,6 @@ class Strategy:
 
             return "new_candle"
 
-        # New Candle
 
         elif timestamp >= last_candle.timestamp + self.tf_equiv:
             new_ts = last_candle.timestamp + self.tf_equiv
@@ -139,7 +135,6 @@ class Strategy:
 
 
 
-        # Short is not allowed on Spot platforms
         if self.client.platform == "binance_spot" and signal_result == -1:
             return
 
@@ -235,12 +230,12 @@ class TechnicalStrategy(Strategy):
 
         up, down = delta.copy(), delta.copy()
         up[up < 0] = 0
-        down[down > 0] = 0  # Keep only the negative change, others are set to 0
+        down[down > 0] = 0  
 
         avg_gain = up.ewm(com=(self._rsi_length - 1), min_periods=self._rsi_length).mean()
         avg_loss = down.abs().ewm(com=(self._rsi_length - 1), min_periods=self._rsi_length).mean()
 
-        rs = avg_gain / avg_loss  # Relative Strength
+        rs = avg_gain / avg_loss  # relative strength
 
         rsi = 100 - 100 / (1 + rs)
         rsi = rsi.round(2)
@@ -253,11 +248,10 @@ class TechnicalStrategy(Strategy):
 
         close_list = []
         for candle in self.candles:
-            close_list.append(candle.close)  # Use only the close price of each candlestick for the calculations
+            close_list.append(candle.close)  
 
-        closes = pd.Series(close_list)  # Converts the close prices list to a pandas Series.
-
-        ema_fast = closes.ewm(span=self._ema_fast).mean()  # Exponential Moving Average method
+        closes = pd.Series(close_list)  
+        ema_fast = closes.ewm(span=self._ema_fast).mean()  
         ema_slow = closes.ewm(span=self._ema_slow).mean()
 
         macd_line = ema_fast - ema_slow
