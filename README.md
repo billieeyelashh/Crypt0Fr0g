@@ -2,8 +2,7 @@
 [![CircleCI](https://circleci.com/gh/lona9a/Crypt0Fr0g.svg?style=shield)](https://circleci.com/gh/lona9a/Crypt0Fr0g)
 
 ## General Info:
-- This bot is designed to trade Crypto on the Binance platform. Use this bot at your own Risk.
-
+- Hi I'm Crypto Frog :). I'm trading various coins
 ## How to install 
 
 ### Step1: Connect Bot to Binance
@@ -24,9 +23,9 @@
 - You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
 
 ## TO-DO
-- Add stochastical Analysis
-- Add support for other Brokers(e.g Bitmex Coinbase etc.)
+- Add stochastical analysis
+- Add support for other brokers(e.g Bitmex Coinbase etc.)
 - Add support for Elon Musk Tweets lol
-- Make a better README.md
+- Add better docs for usage
 
 ## Credits
