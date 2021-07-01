@@ -3,7 +3,7 @@
 
 ## General Info:
 - This bot is designed to trade Crypto on the Binance platform. Use this bot at your own Risk.
----  
+
 ## How to install 
 
 ### Step1: Get your private API Keys from Binance and write them to database.py
@@ -17,10 +17,10 @@
 
 ### Step4: Run main.py
       python3 main.py
----  
+  
 ## Configuration
 - You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
----
+
 ## TO-DO
 - Add stochastical Analysis
 - Add support for other Brokers(e.g Bitmex Coinbase etc.)
