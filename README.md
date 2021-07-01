@@ -7,7 +7,8 @@
 ## How to install 
 
 ### Step1: Get your private Api Keys from Binance and write them to database.py
-
+How to get the api key:
+ <img src="https://public.bnbstatic.com/image/cms/article/body/202103/d40241dca7c551e2944fd039177b50d0.png" width="250"> |
 ### Step2: Installing requirements
       pip intall -r requirements.txt
 
