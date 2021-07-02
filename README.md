@@ -14,10 +14,10 @@
 - Write them into the secrets.py file
 
 ### Step2: Installing requirements
-      pip intall -r requirements.txt
+     $ pip intall -r requirements.txt
 
 ### Step3: Run the Crypt0Fr0g
-      python3 main.py
+     $ python3 main.py
   
 ## Configuration
 - You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
