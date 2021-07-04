@@ -14,7 +14,7 @@
 - Write them into the secrets.py file
 
 ### Step2: Installing requirements
-     $ pip intall -r requirements.txt
+     $ pip install -r requirements.txt
 
 ### Step3: Run the Crypt0Fr0g
      $ python3 main.py
