@@ -20,7 +20,7 @@
      $ python3 main.py
   
 ## Configuration
-- You can configure the bot in the strategies.py and models.py classes. By changing example the stop loss function
+- You can configure the bot in the strategies.py and models.py classes. By changing for example the stop loss function
 
 ## TO-DO
 - Add stochastical analysis
