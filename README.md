@@ -1,4 +1,7 @@
 [![CircleCI](https://circleci.com/gh/lona9a/Crypt0Fr0g.svg?style=shield)](https://circleci.com/gh/lona9a/Crypt0Fr0g)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 # Crypt0Fr0g :money_with_wings: :frog:
 - Hi I'm Crypto Frog :). I'm trading various coins. I try to make you rich just by you doing nothing. Use me at your own risk. QUACK!
 - I'm still under active development so pull requests are welcomed 
