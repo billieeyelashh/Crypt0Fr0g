@@ -34,3 +34,4 @@
 - Add better docs for usage
 
 ## Credits
+@T0M-K0ALA for ASCII ART
