@@ -7,6 +7,7 @@
 - I'm still under active development so pull requests are welcomed 
 ## Supported Marketplaces
 - Binance
+- (Bitmex)
 
 ## How to install 
 
